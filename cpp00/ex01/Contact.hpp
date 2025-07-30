@@ -6,15 +6,11 @@
 class Contact
 {
 	public:
-		Contact();
-		~Contact();
-
-		Contact(
-			std::string firstName,
-			std::string lastName,
-			std::string nickName,
-			std::string phoneNumber,
-			std::string darkestSecret);
+		void	setFirstName(std::string);
+		void	setLastName(std::string);
+		void	setNickName(std::string);
+		void	setPhoneNumber(std::string);
+		void	setDarkestSecret(std::string);
 
 		std::string	getFirstName();
 		std::string	getLastName();
