@@ -1,5 +1,8 @@
 #include <iostream>
+#include <iomanip>
 #include "PhoneBook.hpp"
+
+std::string truncate(std::string input);
 
 PhoneBook::PhoneBook() { _count = 0; }
 
@@ -33,16 +36,24 @@ void PhoneBook::add()
 		return ;
 	contact.setDarkestSecret(input);
 
-	_count++;
-
 	this->contacts[_count % 8] = contact;
+
+	_count++;
 }
 
 void PhoneBook::search()
 {
-	std::cout << "|Index     |First Name|Last Name |Nick Name |" << std::endl;
+	std::cout << "|     Index|First Name| Last Name| Nick Name|" << std::endl;
 	for (size_t i = 0; i < _count; i++)
 	{
-		
+		std::cout << "|";
+		std::cout << std::setw(10) << i;
+		std::cout << "|";
+		std::cout << std::setw(10) << truncate(this->contacts[i].getFirstName());
+		std::cout << "|";
+		std::cout << std::setw(10) << truncate(this->contacts[i].getLastName());
+		std::cout << "|";
+		std::cout << std::setw(10) << truncate(this->contacts[i].getNickName());
+		std::cout << "|" << std::endl;
 	}
 }
