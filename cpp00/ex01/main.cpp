@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include "PhoneBook.hpp"
 
 int main(void)
@@ -8,12 +9,22 @@ int main(void)
 
 	while (1)
 	{
+		std::cout << ">";
 		if (std::getline(std::cin, input).eof())
 			break ;
-		else if (input == "ADD")
+
+		std::istringstream iss(input); 
+		iss >> input;
+	
+		if (input == "ADD")
 			phoneBook.add();
 		else if (input == "SEARCH")
-			phoneBook.search();
+		{
+			int	idx = -1;
+
+			iss >> idx;
+			phoneBook.search(idx);
+		}
 		else if (input == "EXIT")
 			break ;
 	}
