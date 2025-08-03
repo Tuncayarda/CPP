@@ -44,7 +44,7 @@ void PhoneBook::add()
 	contact.setDarkestSecret(input);
 
 	this->contacts[_count % 8] = contact;
-
+	this->contacts[_count % 8].setAsFilled();
 	_count++;
 }
 
@@ -68,12 +68,15 @@ void PhoneBook::search(int idx)
 	}
 	else if (idx <= 7 && idx >= 0)
 	{
-		std::cout << "First Name: " << this->contacts[idx].getFirstName() << std::endl;
-		std::cout << "Last Name: " << this->contacts[idx].getLastName() << std::endl;
-		std::cout << "Nick Name: " << this->contacts[idx].getNickName() << std::endl;
-		std::cout << "Phone Number: " << this->contacts[idx].getPhoneNumber() << std::endl;
-		std::cout << "Darkest Secret: " << this->contacts[idx].getDarkestSecret() << std::endl;
+		if (this->contacts[idx].getFilledStatus())
+		{
+			std::cout << "First Name: " << this->contacts[idx].getFirstName() << std::endl;
+			std::cout << "Last Name: " << this->contacts[idx].getLastName() << std::endl;
+			std::cout << "Nick Name: " << this->contacts[idx].getNickName() << std::endl;
+			std::cout << "Phone Number: " << this->contacts[idx].getPhoneNumber() << std::endl;
+			std::cout << "Darkest Secret: " << this->contacts[idx].getDarkestSecret() << std::endl;
+		}
+		else std::cout << "Empty Field" << std::endl;
 	}
-	else
-		std::cout << "Invalid index number (0-7)";
+	else std::cout << "Invalid index (0-7)" << std::endl;
 }
