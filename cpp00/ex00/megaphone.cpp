@@ -1,17 +1,23 @@
 #include <iostream>
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	if (ac == 2)
+	int	i;
+	int	j;
+
+	if (ac == 1) {
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl; return 0;
+	}
+	i = 1;
+	while (i < ac)
 	{
-		for (int i = 0; av[1][i] != '\0'; ++i)
+		j = 0;
+		while (av[i][j] != '\0')
 		{
-			if (std::islower(av[1][i]))
-				std::cout << (char)std::toupper(av[1][i]);
-			else
-				std::cout << av[1][i];
+			std::cout << (char) std::toupper(av[i][j]);
+			j++;
 		}
-		std::cout << std::endl;
+		i++;
 	}
 	return 0;
 }
