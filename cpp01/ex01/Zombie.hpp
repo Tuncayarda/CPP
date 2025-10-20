@@ -12,7 +12,6 @@ public:
     ~Zombie( void );;
 
     void    announce( void );
-    void    setName(std::string name);
 
 private:
     std::string name;
