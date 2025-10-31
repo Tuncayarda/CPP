@@ -17,7 +17,7 @@ Account::Account()
 	_nbAccounts++;
 }
 
-Account::Account( int initial_deposit)
+Account::Account( int initial_deposit )
 {
 	_amount = initial_deposit;
 	_totalAmount += initial_deposit;
@@ -49,9 +49,11 @@ int	Account::getNbWithdrawals() { return (_totalNbWithdrawals); }
 
 void	Account::_displayTimestamp( void )
 {
-	std::time_t	now = std::time(nullptr);
+	std::time_t	now = std::time(NULL);
 	std::tm*	tm = std::localtime(&now);
-	std::cout << "[" << std::put_time(tm, "%Y%m%d_%H%M%S") << "] ";
+	char buffer[20];
+	std::strftime(buffer, sizeof(buffer), "%Y%m%d_%H%M%S", tm);
+	std::cout << "[" << buffer << "] ";
 }
 
 void	Account::displayAccountsInfos()
