@@ -7,6 +7,7 @@ class Contact
 {
 	public:
 		Contact();
+		~Contact();
 
 		void	setFirstName(std::string);
 		void	setLastName(std::string);

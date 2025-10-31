@@ -1,6 +1,7 @@
 #include "Contact.hpp"
 
 Contact::Contact() : _is_filled(false) {}
+Contact::~Contact() {}
 
 void	Contact::setFirstName(std::string firstName) { _firstName = firstName; }
 void	Contact::setLastName(std::string lastName) { _lastName = lastName; }
