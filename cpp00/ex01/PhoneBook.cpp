@@ -45,7 +45,8 @@ void PhoneBook::add()
 
 	this->contacts[_count % 8] = contact;
 	this->contacts[_count % 8].setAsFilled();
-	_count++;
+	if (_count != 8)
+		_count++;
 }
 
 void PhoneBook::search(int idx)
