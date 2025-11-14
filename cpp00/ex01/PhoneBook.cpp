@@ -6,6 +6,7 @@ std::string truncate(std::string input);
 bool is_digits_only(std::string str);
 
 PhoneBook::PhoneBook() { _count = 0; }
+PhoneBook::~PhoneBook() {}
 
 void PhoneBook::add()
 {
