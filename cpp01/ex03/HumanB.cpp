@@ -1,8 +1,8 @@
 #include "HumanB.hpp"
 #include <iostream>
 
-HumanB::HumanB() : name(""), weapon(nullptr) {}
-HumanB::HumanB(const std::string& name) : name(name), weapon(nullptr) {}
+HumanB::HumanB() : name(""), weapon(NULL) {}
+HumanB::HumanB(const std::string& name) : name(name), weapon(NULL) {}
 HumanB::~HumanB() {}
 
 void HumanB::attack()

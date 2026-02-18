@@ -1,8 +1,6 @@
 #include "Harl.hpp"
-#include <iostream>
 
 Harl::Harl() {}
-Harl::~Harl() {}
 
 void Harl::debug( void )
 {
@@ -29,21 +27,27 @@ void Harl::error( void )
 
 void Harl::complain( std::string level )
 {
-    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    
+    int  i;
 
-    void (Harl::*functions[4])(void) = {
-        &Harl::debug,
-        &Harl::info,
-        &Harl::warning,
-        &Harl::error
-    };
-
-    for (size_t i = 0; i < 4; i++)
-    {
+    for (i = 0; i < 4; i++)
         if (level == levels[i])
-        {
-            (this->*functions[i])();
-            return;
-        }
+            break;
+
+    switch (i)
+    {
+        case 0:
+            Harl::debug();
+        case 1:
+            Harl::info();
+        case 2:
+            Harl::warning();
+        case 3:
+            Harl::error();
+            break;
+        default:
+            std::cout << "[ " << level << " ]" << std::endl;
+            std::cout << "JUST SHUT UP!" << std::endl;
     }
 }

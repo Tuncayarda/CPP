@@ -4,7 +4,7 @@
 
 int main(int ac , char **av)
 {
-    if (ac != 4)
+    if (ac != 4 || std::string(av[2]).empty())
     {
         std::cout << "Usage: ./program <filename> <string1> <string2>" << std::endl;
         return 1;
@@ -14,14 +14,14 @@ int main(int ac , char **av)
     std::string str1 = av[2];
     std::string str2 = av[3];
     
-    std::fstream file(filename, std::ios::in);
+    std::ifstream file(filename.c_str());
     if (!file.is_open())
     {
         std::cout << "Error: Could not open file " << filename << std::endl;
         return 1;
     }
 
-    std::fstream output(filename.append(".replace"), std::ios::out | std::ios::trunc);
+    std::ofstream output(filename.append(".replace").c_str());
     if (!output.is_open())
     {
         std::cout << "Error: Could not open file " << filename << std::endl;

@@ -46,4 +46,6 @@ void Harl::complain( std::string level )
             return;
         }
     }
+    std::cout << "[ " << level << " ]" << std::endl;
+    std::cout << "JUST SHUT UP!" << std::endl;
 }
