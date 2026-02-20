@@ -41,48 +41,47 @@ int Fixed::toInt( void ) const
 Fixed &Fixed::operator=( const Fixed &other )
 {
     std::cout << "Copy assignment operator called" << std::endl;
-
     if (this != &other)
         raw = other.getRawBits();
     return *this;
 }
 
-bool Fixed::operator<( const Fixed &other )
+bool Fixed::operator<( const Fixed &other ) const
 {
     return (this->raw < other.raw);
 }
 
 
-bool Fixed::operator>( const Fixed &other )
+bool Fixed::operator>( const Fixed &other ) const
 {
     return (this->raw > other.raw);
 }
 
 
-bool Fixed::operator>=( const Fixed &other )
+bool Fixed::operator>=( const Fixed &other ) const
 {
     return (this->raw >= other.raw);
 }
 
 
-bool Fixed::operator<=( const Fixed &other )
+bool Fixed::operator<=( const Fixed &other ) const
 {
     return (this->raw <= other.raw);
 }
 
 
-bool Fixed::operator==( const Fixed &other )
+bool Fixed::operator==( const Fixed &other ) const
 {
     return (this->raw == other.raw);
 }
 
 
-bool Fixed::operator!=( const Fixed &other )
+bool Fixed::operator!=( const Fixed &other ) const
 {
     return (this->raw != other.raw);
 }
 
-Fixed &Fixed::operator+( const Fixed &other )
+Fixed Fixed::operator+( const Fixed &other ) const
 {
     Fixed res;
 
@@ -90,7 +89,7 @@ Fixed &Fixed::operator+( const Fixed &other )
     return res;
 }
 
-Fixed &Fixed::operator-( const Fixed &other )
+Fixed Fixed::operator-( const Fixed &other ) const
 {
     Fixed res;
 
@@ -98,27 +97,60 @@ Fixed &Fixed::operator-( const Fixed &other )
     return res;
 }
 
-Fixed &Fixed::operator*( const Fixed &other )
+Fixed Fixed::operator*(const Fixed& other) const
 {
     Fixed res;
-
-    res.setRawBits((this->raw / (1 << frac)) * other.getRawBits());
+    long tmp = (long)this->raw * (long)other.getRawBits();
+    res.setRawBits((int)(tmp >> frac));
     return res;
 }
 
-Fixed &Fixed::operator/( const Fixed &other )
+Fixed Fixed::operator/(const Fixed& other) const
 {
     Fixed res;
-
-    res.setRawBits((this->raw << frac) / other.getRawBits());
+    long num = ((long)this->raw << frac);
+    res.setRawBits((int)(num / other.getRawBits()));
     return res;
 }
 
 int Fixed::getRawBits( void ) const
 {
-    std::cout << "getRawBits member function called" << std::endl;
-
     return raw;
+}
+
+Fixed &Fixed::operator++( void )
+{
+    this->raw += 1;
+    return *this;
+}
+
+Fixed Fixed::operator++( int )
+{
+    Fixed res;
+
+    res.raw = this->raw;
+    this->raw += 1;
+    return res;
+}
+
+Fixed& Fixed::min(Fixed& a, Fixed& b)
+{
+    return (a < b) ? a : b;
+}
+
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+{
+    return (a < b) ? a : b;
+}
+
+Fixed& Fixed::max(Fixed& a, Fixed& b)
+{
+    return (a > b) ? a : b;
+}
+
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+{
+    return (a > b) ? a : b;
 }
 
 void Fixed::setRawBits( int const raw )
