@@ -1,3 +1,4 @@
+#include <math.h>
 #include "Fixed.hpp"
 
 Fixed::Fixed() : raw(0)
