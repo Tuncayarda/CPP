@@ -14,7 +14,7 @@ Fixed::Fixed( const int val )
 Fixed::Fixed( const float val )
 {
     std::cout << "Float constructor called" << std::endl;
-    raw = roundf(val * 256);
+    raw = roundf(val * (1 << frac));
 }
 
 Fixed::~Fixed()
