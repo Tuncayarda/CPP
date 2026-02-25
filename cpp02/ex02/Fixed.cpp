@@ -134,6 +134,21 @@ Fixed Fixed::operator++( int )
     return res;
 }
 
+Fixed &Fixed::operator--( void )
+{
+    this->raw -= 1;
+    return *this;
+}
+
+Fixed Fixed::operator--( int )
+{
+    Fixed res;
+
+    res.raw = this->raw;
+    this->raw -= 1;
+    return res;
+}
+
 Fixed& Fixed::min(Fixed& a, Fixed& b)
 {
     return (a < b) ? a : b;
